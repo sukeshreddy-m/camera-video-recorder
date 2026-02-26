@@ -4,14 +4,12 @@ import time
 from datetime import datetime
 import mysql.connector
 
-# ===== USER INPUT =====
 total_minutes = float(input("Enter total recording duration (minutes): "))
 interval_minutes = float(input("Enter clip interval (minutes): "))
 
 total_seconds = total_minutes * 60
 interval_seconds = interval_minutes * 60
 
-# ===== MYSQL CONNECTION =====
 db = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -21,11 +19,9 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
-# ===== CREATE RECORDINGS FOLDER =====
 if not os.path.exists("recordings"):
     os.makedirs("recordings")
 
-# ===== CAMERA SETUP =====
 cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
